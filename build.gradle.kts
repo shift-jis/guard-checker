@@ -5,7 +5,6 @@ plugins {
 base {
     archivesName = properties["archives_base_name"] as String
     version = properties["mod_version"] as String
-    group = properties["maven_group"] as String
 }
 
 repositories {
@@ -17,15 +16,18 @@ repositories {
         name = "meteor-maven-snapshots"
         url = uri("https://maven.meteordev.org/snapshots")
     }
+    maven {
+        name = "djtheredstoner-devauth"
+        url = uri("https://pkgs.dev.azure.com/djtheredstoner/DevAuth/_packaging/public/maven/v1")
+    }
 }
 
 dependencies {
-    // Fabric
     minecraft("com.mojang:minecraft:${properties["minecraft_version"] as String}")
     mappings("net.fabricmc:yarn:${properties["yarn_mappings"] as String}:v2")
-    modImplementation("net.fabricmc:fabric-loader:${properties["loader_version"] as String}")
 
-    // Meteor
+    modRuntimeOnly("me.djtheredstoner:DevAuth-fabric:${properties["devauth_version"] as String}")
+    modImplementation("net.fabricmc:fabric-loader:${properties["loader_version"] as String}")
     modImplementation("meteordevelopment:meteor-client:${properties["minecraft_version"] as String}-SNAPSHOT")
 }
 

@@ -1,31 +1,29 @@
 {
-  "schemaVersion": 1,
-  "id": "addon-template",
-  "version": "${version}",
-  "name": "Addon Template",
-  "description": "An addon template for Meteor Client addons.",
-  "authors": [
-    "seasnail"
-  ],
-  "contact": {
-    "repo": "https://github.com/MeteorDevelopment/meteor-addon-template"
-  },
-  "icon": "assets/template/icon.png",
-  "environment": "client",
-  "entrypoints": {
-    "meteor": [
-      "com.example.addon.AddonTemplate"
-    ]
-  },
-  "mixins": [
-    "addon-template.mixins.json"
-  ],
-  "custom": {
-    "meteor-client:color": "225,25,25"
-  },
-  "depends": {
-    "java": ">=21",
-    "minecraft": ["${mc_version}"],
-    "meteor-client": "*"
-  }
+    "schemaVersion": 1,
+    "id": "guard-checker",
+    "version": "${version}",
+    "name": "Guard Checker",
+    "description": "An addon template for Meteor Client addons.",
+    "authors": [
+        "sushi-obfuscation"
+    ],
+    "environment": "client",
+    "entrypoints": {
+        "meteor": [
+            "org.wasabi.bungeeguard.GuardCheckerAddon"
+        ]
+    },
+    "mixins": [
+        "guard-checker.mixins.json"
+    ],
+    "custom": {
+        "meteor-client:color": "225,25,25"
+    },
+    "depends": {
+        "java": ">=21",
+        "minecraft": [
+            "${mc_version}"
+        ],
+        "meteor-client": "*"
+    }
 }
