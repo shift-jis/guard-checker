@@ -2,12 +2,19 @@ package org.wasabi.bungeeguard;
 
 import meteordevelopment.meteorclient.MeteorClient;
 import meteordevelopment.meteorclient.addons.MeteorAddon;
+import meteordevelopment.meteorclient.events.game.GameJoinedEvent;
 import meteordevelopment.meteorclient.events.packets.PacketEvent;
+import meteordevelopment.meteorclient.utils.player.ChatUtils;
 import meteordevelopment.orbit.EventHandler;
 import meteordevelopment.orbit.EventPriority;
 import net.minecraft.network.packet.s2c.login.LoginSuccessS2CPacket;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class GuardCheckerAddon extends MeteorAddon {
+    private final List<BungeeguardToken> bungeeguardTokens = new ArrayList<>();
+
     @Override
     public void onInitialize() {
         MeteorClient.EVENT_BUS.subscribe(this);
@@ -25,7 +32,16 @@ public class GuardCheckerAddon extends MeteorAddon {
                     .map(com.mojang.authlib.properties.Property::value) // or .getValue() in older authlib versions
                     .findFirst()
                     .orElse("N/A");
-            MeteorClient.LOG.info("Detected BungeeGuard-protected server. Token: {}", tokenValue);
+            bungeeguardTokens.add(new BungeeguardToken(event.connection.getAddressAsString(true), tokenValue));
         }
+    }
+
+    @EventHandler
+    private void onGameJoined(GameJoinedEvent event) {
+        bungeeguardTokens.removeIf(bungeeguardToken -> {
+            ChatUtils.info("Detected BungeeGuard-protected server. Token: " + bungeeguardToken.value());
+            MeteorClient.LOG.info("Detected BungeeGuard-protected server. Token: {}", bungeeguardToken.value());
+            return true;
+        });
     }
 }
