@@ -1,4 +1,4 @@
-package org.wasabi.bungeeguard;
+package com.github.shiftjis.bungeeguard;
 
 import meteordevelopment.meteorclient.MeteorClient;
 import meteordevelopment.meteorclient.addons.MeteorAddon;

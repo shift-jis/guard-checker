@@ -10,7 +10,7 @@
     "environment": "client",
     "entrypoints": {
         "meteor": [
-            "org.wasabi.bungeeguard.GuardCheckerAddon"
+            "com.github.shiftjis.bungeeguard.GuardCheckerAddon"
         ]
     },
     "mixins": [

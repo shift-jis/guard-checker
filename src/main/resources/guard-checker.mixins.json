@@ -1,6 +1,6 @@
 {
     "required": true,
-    "package": "org.wasabi.bungeeguard.mixins",
+    "package": "com.github.shiftjis.bungeeguard",
     "compatibilityLevel": "JAVA_21",
     "injectors": {
         "defaultRequire": 1
