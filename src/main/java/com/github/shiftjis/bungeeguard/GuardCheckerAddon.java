@@ -22,7 +22,7 @@ public class GuardCheckerAddon extends MeteorAddon {
 
     @Override
     public String getPackage() {
-        return "org.wasabi.bungeeguard";
+        return "com.github.shiftjis.bungeeguard";
     }
 
     @EventHandler(priority = EventPriority.HIGHEST + 1)
